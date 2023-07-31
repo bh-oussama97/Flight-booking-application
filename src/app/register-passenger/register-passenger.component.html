@@ -1,0 +1,94 @@
+<form [formGroup]="form">
+    <div class="container d-grid gap-3" style="max-width: 700px;">
+  
+      <div class="form-floating">
+        <input  formControlName="email" placeholder="Email" class="form-control" type="text" />
+        <label for="email">Email</label>
+
+        <div *ngIf="field.email.invalid && (field.email.dirty || field.email.touched)" class="invalid-feedback d-block">
+          <div *ngIf="field.email.errors['required']"
+          >
+         Email is required
+          </div>          
+          <div *ngIf="field.email.errors['email']"
+          >
+         Email is not valid
+          </div>
+          </div>
+      </div>
+      <div class="d-grid gap-3">
+  
+        <div class="form-floating">
+  
+          <input formControlName="firstName" class="form-control" type="text" id="firstName" placeholder="First Name" />
+          <label class="form-label" for="firstName">First Name</label>
+
+          <div *ngIf="field.firstName.invalid && (field.firstName.dirty || field.firstName.touched)" class="invalid-feedback d-block">
+            <div *ngIf="field.firstName.errors"
+            >
+           FirstName is invalid
+            </div>
+            </div>
+  
+        </div>
+  
+        <div class="form-floating">
+  
+          <input formControlName="lastName" placeholder="Last Name" class="form-control" id="lastName" type="text" />
+          <label class="form-label" for="lastName">Last Name</label>
+
+          <div *ngIf="field.lastName.invalid && (field.lastName.dirty || field.lastName.touched)" class="invalid-feedback d-block">
+            <div *ngIf="field.lastName.errors"
+            >
+           LastName is invalid
+            </div>
+            </div>
+  
+        </div>
+
+        <div class="form-floating">
+          <input formControlName="username" placeholder="Username" type="text" class="form-control">
+          <label for="" class="form-label">Username</label>
+
+          <div *ngIf="field.username.invalid && (field.username.dirty || field.username.touched)" class="invalid-feedback d-block">
+            <div *ngIf="field.username.errors"
+            >
+           Username is invalid
+            </div>
+            </div>
+        </div>
+
+
+        <div class="form-floating">
+          <input formControlName="password" type="password" placeholder="Password"  class="form-control">
+          <label for="" class="form-label">Password</label>
+          <div *ngIf="field.password.invalid && (field.password.dirty || field.password.touched)" class="invalid-feedback d-block">
+            <div *ngIf="field.password.errors['pattern']"
+            >
+           Password should match the pattern
+            </div>            
+            <div *ngIf="field.password.errors['required']"
+            >
+           Password is required
+            </div>
+            </div>
+        </div>
+  
+        <div>
+          <input formControlName="gender" id="gender" class="form-check-input" [value]=true type="radio" />
+          <label class="ms-2 form-check-label" for="gender">Female</label>
+        </div>
+        <div>
+          <input formControlName="gender" id="gender" class="form-check-input" [value]=false type="radio" />
+          <label class="ms-2 form-check-label" for="gender">Male</label>
+        </div>
+      </div>
+
+
+      <div  #alertContent></div>
+
+      <div class="d-flex justify-content-center center">
+        <button (click)="register()" id="registerBtn" type="submit" class="btn btn-primary">Register</button>
+      </div>
+    </div>
+  </form>

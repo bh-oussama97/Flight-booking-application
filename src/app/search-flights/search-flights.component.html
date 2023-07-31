@@ -1,0 +1,123 @@
+<h5 class="text-md-center m-5">Search for flights</h5>
+
+<form [formGroup]="searchForm" (ngSubmit)="search()">
+<div class="m-5 d-grid gap-3">
+  <div class="row">
+    <div class="col">
+      <div class="form-floating">
+        <input placeholder="From" class="form-control" formControlName="from" />
+        <label class="text-primary form-label">From</label>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-floating">
+        <input placeholder="From date" type="text" class="form-control" formControlName="destination" />
+        <label class="text-primary form-label">Destination</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-floating">
+        <input placeholder="To date" type="date" class="form-control" formControlName="fromDate" />
+        <label class="text-primary form-label">From Date</label>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-floating">
+        <input placeholder="To Date" type="date" class="form-control" formControlName="toDate" />
+        <label class="text-primary form-label">To Date</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-end">
+      <label class="form-label text-primary mt-2" for=""
+        >Number of Passengers</label
+      >
+    </div>
+    <div class="col">
+      <div class="input-group">
+        <div class="input-group-text">For</div>
+        <input type="number" placeholder="1" class="form-control"  formControlName="numberOfPassengers"/>
+        <div class="input-group-text">Passengers</div>
+        <button type="submit" class="btn-primary btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<div *ngFor="let flight of searchResult">
+  <div class="card text-dark mt-5 text-center">
+    <div class="card-body card-body-style">
+      <h6 class="card-title">{{ flight.airline }}</h6>
+      <div class="card-title card-title-color">
+        {{ flight.remainingNumberOfSeats }} remaining seats
+      </div>
+      <div class="d-grid text-center g-2">
+        <div class="row">
+          <div class="col">
+            <div class="col m-3">
+              <i
+                class="text-primary fas fa-plane-departure text-plan-size"
+              ></i>
+            </div>
+            <div class="col">
+              <i class="fa-solid fa-location-dot">
+                {{ flight.departure.place }}
+              </i>
+            </div>
+            <div class="col">
+              <i class="fa-regular">
+                {{ flight.departure.time | date }}
+              </i>
+            </div>
+            <div class="col">
+              <i class="fa-regular fa-clock">
+                {{ flight.departure.time | date : "shortTime" }}
+              </i>
+            </div>
+          </div>
+          <div class="col">
+            <div class="flex">
+              <i
+                class="fa-solid fa-circle circle-size"
+              ></i>
+              <hr class="hr-style" />
+              <i class="fas fa-plane mt-48"></i>
+            </div>
+            <i class="fas fa-usd">{{ flight.price }}</i>
+            <br />
+            <a class="btn btn-secondary btn-lg mt-2" [routerLink]="['/book-flight',flight.id]">
+              <i class="fas fa-ticket"></i>
+              Book
+            </a>
+          </div>
+          <div class="col">
+            <div class="col m-3">
+              <i
+                class="text-primary fas fa-plane-arrival arrival-text-size"></i>
+            </div>
+            <div class="col">
+              <i class="fa-solid fa-location-dot">
+                {{ flight.arrival.place }}
+              </i>
+            </div>
+            <div class="col">
+              <i class="fa-regular">
+                {{ flight.arrival.time | date }}
+              </i>
+            </div>
+            <div class="col">
+              <i class="fa-regular fa-clock">
+                {{ flight.arrival.time | date : "shortTime" }}
+              </i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
